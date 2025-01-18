@@ -58,6 +58,10 @@ class Usuario(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido} - {self.correo}"
+    class Meta:
+        indexes = [
+            models.Index(fields=['cedula']),
+        ]
 
 class Tarjeta(models.Model):
     id_tarjeta = models.AutoField(primary_key=True)
@@ -91,7 +95,7 @@ class Tarjeta(models.Model):
     )
 
     pin = models.CharField(
-        max_length=4,  # Longitud estándar del PIN
+        max_length=4,  
         validators=[
             MinLengthValidator(4, message="El PIN debe tener 4 dígitos."),
             RegexValidator(r'^\d+$', message="El PIN debe contener solo números.")
@@ -101,6 +105,10 @@ class Tarjeta(models.Model):
 
     def __str__(self):
         return f"Tarjeta {self.numero_tarjeta} - Estado: {self.estado_tarjeta}"
+    class Meta:
+        indexes = [
+            models.Index(fields=['numero_tarjeta']),
+        ]
     
 class CuentaBancaria(models.Model):
     id_cuenta = models.AutoField(primary_key=True)
@@ -123,6 +131,12 @@ class CuentaBancaria(models.Model):
     class Meta:
         verbose_name = "Cuenta Bancaria"
         verbose_name_plural = "Cuentas Bancarias"
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['numero_cuenta']),
+        ]    
+        
 
 class Transacciones(models.Model):
     id_transacciones = models.AutoField(primary_key=True)
@@ -183,3 +197,7 @@ class Transacciones(models.Model):
         verbose_name = "Transacción"
         verbose_name_plural = "Transacciones"
         ordering = ['-fecha_hora']
+    class Meta:
+        indexes = [
+            models.Index(fields=['id_transacciones']),
+        ] 
