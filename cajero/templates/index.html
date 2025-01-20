@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %} <!-- Carga de etiquetas estáticas -->
+
+{% block title %}Página inicial{% endblock title %}
+{% block content %}
+<div class="position-relative">
+    <!-- Imagen al lado izquierdo -->
+    <div class="d-flex align-items-start p-4">
+        <div class="me-4" style="margin-top: 200px;">
+            <img src="{% static 'mutualista.png' %}" 
+                 alt="Mutualista" 
+                 style="width: 700px; height: auto;">
+        </div>
+        <div>
+            <p class="p-2">Hola, bienvenido a la página inicial.</p>
+        </div>
+    </div>
+
+    <!-- Imagen en la esquina inferior derecha -->
+    <div style="position: absolute; bottom: 20px; right: 20px;">
+        <img src="{% static 'mastercard.png' %}" 
+             alt="Otra Imagen" 
+             style="width: 150px; height: auto;">
+    </div>
+</div>
+{% endblock content %}
+
+
