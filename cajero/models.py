@@ -39,16 +39,16 @@ class Usuario(models.Model):
     direccion = models.CharField(max_length=100, null=False, verbose_name="Dirección")
     correo = models.EmailField(max_length=100, null=False, unique=True, verbose_name="Correo Electrónico")
     cedula = models.CharField(
-        max_length=20,  # Ajusta según el formato de tu país
+        max_length=20,  
         validators=[
             MinLengthValidator(10, message="La cédula debe tener al menos 10 dígitos."),
             RegexValidator(r'^\d+$', message="La cédula debe contener solo números.")
         ],
-        unique=True,  # Asegura que no haya duplicados
+        unique=True,  
         verbose_name="Cédula"
     )
     telefono = models.CharField(
-        max_length=15,  # Ajusta según el formato de tu país
+        max_length=15,  
         validators=[
             MinLengthValidator(10, message="El número de teléfono debe tener al menos 10 dígitos."),
             RegexValidator(r'^\d+$', message="El número de teléfono debe contener solo números.")
@@ -58,6 +58,7 @@ class Usuario(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido} - {self.correo}"
+    
     class Meta:
         indexes = [
             models.Index(fields=['cedula']),
@@ -137,7 +138,6 @@ class CuentaBancaria(models.Model):
             models.Index(fields=['numero_cuenta']),
         ]    
         
-
 class Transacciones(models.Model):
     id_transacciones = models.AutoField(primary_key=True)
     tipo_transaccion = models.ForeignKey(
