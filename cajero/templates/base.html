@@ -1,42 +1,85 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <title>{% block title %}{% endblock title %}</title>
-        <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
-        <link href="{% static 'custom.css' %}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <style>
-            /* Estilo para el fondo */
-            body, html {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            .background {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url("{% static 'logo_mutualista.jpg' %}");
-                background-size: cover; 
-                background-position: center;
-                z-index: -1; 
-            }
-            .container {
-                position: relative;
-                z-index: 1;
-                color: white; 
-            }
-        </style>
-    </head>
-    <body>
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("{% static 'logo_mutualista.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        .top-rectangle {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 0px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .top-rectangle img {
+            height: 80px; 
+            width: auto;
+            margin-right: 10px;
+        }
+        .user-info {
+            font-size: 30px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .left-square {
+            position: absolute;
+            top: 120px;
+            left: 20px;
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            z-index: 2;
+        }
+        .right-square {
+            position: absolute;
+            top: 120px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
 
-        <div class="background"></div>
+    <div class="background"></div>
 
-            {% block content %}{% endblock content %}
+    <div class="container">
+        <div class="top-rectangle">
+            <img src="{% static 'mutualista.png' %}" alt="Logo">
+
+            <div class="user-info">
+                    Bienvenido: {{ usuario | capfirst }}
+            </div>
         </div>
-    </body>
+        <div class="left-square"></div>
+        <div class="right-square"></div>
+    </div>
+
+</body>
 </html>
+

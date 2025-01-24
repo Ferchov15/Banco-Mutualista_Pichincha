@@ -24,19 +24,24 @@ def login_view(request):
             return render(request, 'login_fail.html')
 
         try:
-            
+            # Buscar el usuario por nombre
             usuario = Usuario.objects.get(nombre=nombre)
 
-            tarjeta = Tarjeta.objects.get(cuenta_perteneciente=usuario, pin=pin)
+            tarjeta = Tarjeta.objects.get(cuenta_perteneciente=usuario)
 
-            messages.success(request, f"Bienvenido, {usuario.nombre}!")
-            return redirect('index/')  
+            if tarjeta.pin == pin:
+                # Si el PIN es correcto, pasamos el nombre del usuario a la plantilla
+                messages.success(request, f"Bienvenido, {usuario.nombre}!")
+                return render(request, 'index.html', {'usuario': usuario})
+            else:
+                messages.error(request, "PIN incorrecto.")
+                return render(request, 'login_fail.html')
 
         except Usuario.DoesNotExist:
             messages.error(request, "Usuario no encontrado.")
-            return render(request, 'login_fail.html')  # Redirige al login_fail.html
+            return render(request, 'login_fail.html')
         except Tarjeta.DoesNotExist:
-            messages.error(request, "PIN incorrecto.")
-            return render(request, 'login_fail.html')  # Redirige al login_fail.html
+            messages.error(request, "No se encontró una tarjeta asociada a este usuario.")
+            return render(request, 'login_fail.html')
 
     return render(request, 'login.html')
