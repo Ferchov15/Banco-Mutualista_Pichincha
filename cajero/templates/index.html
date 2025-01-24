@@ -1,28 +1,46 @@
 {% extends "base.html" %}
-{% load static %} <!-- Carga de etiquetas estáticas -->
+{% load static %}
 
 {% block title %}Página inicial{% endblock title %}
 {% block content %}
-<div class="position-relative">
-    <!-- Imagen al lado izquierdo -->
-    <div class="d-flex align-items-start p-4">
-        <div class="me-4" style="margin-top: 200px;">
-            <img src="{% static 'mutualista.png' %}" 
-                 alt="Mutualista" 
-                 style="width: 700px; height: auto;">
-        </div>
+<div class="container">
+    <!-- Bloque izquierdo -->
+    <div class="left-square" style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+        <!-- Contenedor para el texto -->
         <div>
-            <p class="p-2" style="color: white">Binevenido al mutualista por favor ingrese su usuario y contraseña</p>
+            <h2 style="color: black; font-size: 2.5rem">Bienvenido al Mutualista Pichincha</h2>
+            <br>
+            <div style="display: flex; justify-content: flex-start; align-items: center; padding: 20px;">
+                <!-- Ícono a la izquierda -->
+                <i class="bi bi-credit-card-2-back-fill" style="font-size: 10rem; color: red;"></i>
+                
+                <!-- Ícono a la derecha con margen para acercarlo -->
+                <i class="bi bi-credit-card-2-front" style="font-size: 10rem; color: red; margin-left: 55px;"></i>
+            </div>
+            
+            
+            <p style="color: black; font-size: 2rem; line-height: 2.5;">
+                Por favor, Seleccione una de las opciones para realizar su tramite
+            </p>
+        </div>
+    
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+            <i class="bi bi-arrow-right-square-fill" style="font-size: 3rem; margin-bottom: 15px; color: red;"></i>
+            <br>
+            <i class="bi bi-arrow-right-square-fill" style="font-size: 3rem; margin-bottom: 15px; color: red;"></i>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <i class="bi bi-arrow-right-square-fill" style="font-size: 3rem; margin-bottom: 15px; color: red;"></i>
         </div>
     </div>
-
-    <!-- Imagen en la esquina inferior derecha -->
-    <div style="position: absolute; bottom: 20px; right: 20px;">
-        <img src="{% static 'mastercard.png' %}" 
-             alt="Otra Imagen" 
-             style="width: 150px; height: auto;">
-    </div>
+    
 </div>
 {% endblock content %}
+
 
 
